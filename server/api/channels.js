@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
         .catch(next);
 })
 
+//Does this work when finding?
 router.post('/',
     gatekeeperMiddleware.isLoggedIn,
     (req, res, next) => {

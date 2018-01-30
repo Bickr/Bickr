@@ -2,11 +2,13 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+//VALIDATIONS
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING
   },
   userName: {
+
     type: Sequelize.STRING
   },
   email: {
@@ -27,8 +29,10 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   admin: {
+    //default
     type: Sequelize.BOOLEAN
   }
+  //CRED?
 })
 
 module.exports = User

@@ -8,6 +8,7 @@ import { Button, Panel } from 'react-bootstrap';
 //import { newMessage } from '../store';
 
 function sendMessage() {
+  //DON'T
   let message = $('#chat-input')[0].value;
   $('#chat-input')[0].value = '';
   socket.emit('message', message);

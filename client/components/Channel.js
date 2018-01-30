@@ -35,7 +35,9 @@ class Channel extends Component {
     )
   }
 }
+
 let refresh = false;
+
 const mapState = (state) => {
   const { currChannel } = state;
   return {

@@ -22,6 +22,7 @@ module.exports = (io, socket) => {
   socket.on('enqueue', ()=>{
     socket.room.addToQueue(socket);
   });
+  //DON"T
   socket.on('message', message => {
     let room = io;
     if (socket.room.name) room = io.to(socket.room.name);

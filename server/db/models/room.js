@@ -1,6 +1,8 @@
 module.exports = function(io){
   const RoomList = function(){ };
   
+  //DON'T DO THIS
+  //Use class with static methods
   RoomList.prototype = {
     createOrFindRoom(name) {
       let room = this[name];
@@ -43,9 +45,9 @@ module.exports = function(io){
       io.to(this.name).emit('broadcastFinished',broadcaster)
       this.broadcasters.splice(this.broadcasters.indexOf(broadcaster),1);
     },
-    addToQueue(queuer){
+    addToQueue(queuer){ //move to startBroadcasting
       this.queue.push(queuer);
-      if(this.queue.length<3 || 1){
+      if(this.queue.length < 3 || 1){
         this.startBroadcasting(queuer);
         queuer.emit('userStartedBroadcasting');
         io.to(this.name).emit('broadcasterStarted',queuer.id);

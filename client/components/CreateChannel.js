@@ -14,6 +14,7 @@ class CreateChannel extends Component {
             channelValue: '',
             descriptionValue: ''
         };
+        //bind functiont to this here
     }
 
     getValidationState(key) {
@@ -51,7 +52,7 @@ class CreateChannel extends Component {
                         onChange={this.handleChange.bind(this, 'channelValue')}
                     />
                     <FormControl.Feedback />
-                    {
+                    {// use && notation
                         this.state.channelValue.length ? null : <HelpBlock>Please enter a value</HelpBlock>
                     }
                 </FormGroup><br />

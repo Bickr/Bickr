@@ -6,6 +6,8 @@ import CategoryList from './Home-CategoryList';
 import { createChannel, fetchChannels } from '../store';
 import { uniqueChannelList } from '../../utils/uniqueChannels'
 
+//no need for home?
+//give everything classNames
 const Home = (props) => {
   const { makeChannel, channels, categoryList } = props;
   return (
