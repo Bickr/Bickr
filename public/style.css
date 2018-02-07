@@ -204,11 +204,9 @@ div.home-category-list-item {
   flex-shrink:0;
   overflow:hidden;
   position: relative;
-  z-index: -1;
 }
 .empty-video.active{
   box-shadow:0px 0px 20px green;
-  z-index: -1;
   position:relative;
 }
 

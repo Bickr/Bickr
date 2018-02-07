@@ -57,7 +57,7 @@ socket.on('setRoomState', roomState => {
 
   if (roomState.broadcasterIds) rtcConnection.joinBroadcasters(roomState.broadcasterIds);
 
-  let { phaseStatus, viewerCount, queue, debateStatus, winner, muteUser, unmuteUser } = roomState;
+  let { phaseStatus, viewerCount, queue, debateStatus, winner, mutedUser, unmutedUser } = roomState;
   //Set the users ability to vote
   store.dispatch(setVoting(roomState.canVote));
 
@@ -67,9 +67,9 @@ socket.on('setRoomState', roomState => {
 
   store.dispatch(setDebate(debateStatus));
 
-  muteUser && rtcConnection.muteUser(muteUser);
+  mutedUser && rtcConnection.muteUser(mutedUser);
 
-  unmuteUser && unmuteUser(unmuteUser);
+  unmutedUser && rtcConnection.unmuteUser(unmutedUser);
 
   store.dispatch(setBroadcasters(roomState.broadcasters));
 

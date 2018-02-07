@@ -99,8 +99,11 @@ function resetConnection() {
     },
     muteUser(id){
       var elem = rtcConnection.broadcastersObj[id];
+
+      console.log(id,'muted');
       if (id !== rtcConnection.userid) elem.volume = 1;
       $(elem).parent().addClass('active');
+      console.log($(elem).parent()[0]);
     },
     unmuteUser(id){
       var elem = rtcConnection.broadcastersObj[id];
