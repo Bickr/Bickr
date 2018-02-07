@@ -102,19 +102,25 @@ class Channel extends Component {
                   </div>
                   </div>
                   <Reaction />
-                <QueueBar
-                queueList={status.queue}
-                isLoggedIn={isLoggedIn}
-                toggleQueue={this.state.toggleQueue}
-                enqueue={enqueue}
-                dequeue={dequeue}
-                toggleDisable={this.toggleDisable}
-                />
+                  {
+                    status.broadcasters.includes(user.id)
+                    ?
+                    <ReactionButtons />
+                    :
+                    <QueueBar
+                    queueList={status.queue}
+                    isLoggedIn={isLoggedIn}
+                    toggleQueue={this.state.toggleQueue}
+                    enqueue={enqueue}
+                    dequeue={dequeue}
+                    toggleDisable={this.toggleDisable}
+                    />
+                  }
+                
                 <Button className="open-button" bsSize={"large"} onClick={() => this.display('togglePrompt')}>Prompts</Button>
                 {
                   isLoggedIn && this.isChannelOwner(channelName) && <Button className="create-prompt-button" onClick={() => this.display('toggleCreatePrompt')}>Create a Prompt</Button>
                 }
-                <ReactionButtons />
               </div>
             </div>
             <Chat channel={channelName} />
