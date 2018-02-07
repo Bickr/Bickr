@@ -1,17 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Breadcrumb } from 'react-bootstrap';
+import { Button, Breadcrumb } from 'react-bootstrap';
 
 const QueueBar = (props) => {
-  const { queueList } = props;
+  const { queueList, isLoggedIn, toggleQueue, toggleDisable, enqueue, dequeue } = props;
   return (
     <div className="queue-bar-container">
-      <h1 className="queue-bar-headline">Players in Queue:</h1>
+      <h1 className="queue-bar-headline">Queue:</h1>
       <Breadcrumb className="queue-bar">
         {
           queueList.slice(0,7).map(queue => {
             return (
-              <Breadcrumb.Item>
+              <Breadcrumb.Item key={queue.userId}>
                 <NavLink to={`/users/${queue.userId}`}>
                   {queue.userName},
                 </NavLink>
@@ -20,6 +20,34 @@ const QueueBar = (props) => {
           })
         }
       </Breadcrumb>
+      {
+        isLoggedIn && 
+        <div className="queue-buttons">
+          <Button
+            className="queue-up"
+            bsStyle="primary"
+            disabled={toggleQueue}
+            onClick={() => {
+              enqueue();
+              toggleDisable();
+            }}
+          >
+            Join
+          </Button>
+          <Button
+            className="queue-up"
+            bsStyle="danger"
+            onClick={() => {
+              if (toggleQueue) {
+                dequeue();
+                toggleDisable();
+              }
+            }}
+          >
+            Leave
+          </Button>
+        </div>
+      }
     </div>
   )
 }

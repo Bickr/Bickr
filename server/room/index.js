@@ -107,6 +107,7 @@ module.exports = (io) => {
       this.activePhase = 0;
       this.firstDebator = true;
       this.state = {};
+      this.sendRoomState();
       if (wasCancelled) io.to(this.name).emit('roomWasCancelled');
       else io.to(this.name).emit('roomHasEnded');
     }
@@ -135,6 +136,14 @@ module.exports = (io) => {
         if (this.state.firstDebator) debateStatus = this.broadcasters[0].userName;
         else debateStatus = this.broadcasters[0].userName;
       }
+
+      let winner;
+      if (!this.state.winner) {
+        winner = false;
+      } else {
+        winner = this.state.winner;
+      }
+
       let state = Object.assign({
         leadinTime,
         totalLeadinTime: this.leadinTime,
@@ -147,6 +156,7 @@ module.exports = (io) => {
         queue: this.queue.map(queuer => { return { 'userId': queuer.userId, 'userName': queuer.userName } }),
         mutedUser,
         unmutedUser,
+        winner,
         broadcasters: this.broadcasters.map(socket => socket.userId),
       }, this.state, {
           sentTime: Date.now()

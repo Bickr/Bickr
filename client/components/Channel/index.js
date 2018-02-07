@@ -29,6 +29,7 @@ class Channel extends Component {
     this.changeVote1 = this.changeVote1.bind(this);
     this.changeVote2 = this.changeVote2.bind(this);
     this.isChannelOwner = this.isChannelOwner.bind(this);
+    this.toggleDisable = this.toggleDisable.bind(this);
   }
 
   componentDidMount() {
@@ -99,39 +100,27 @@ class Channel extends Component {
                       <Voting vote={this.changeVote2} elementId={'2'} />
                     </div>
                   </div>
-                </div>
-                <QueueBar queueList={status.queue} />
-                <div className="queue-buttons">
-                  <Button
-                    className="queue-up"
-                    bsStyle="primary"
-                    disabled={this.state.toggleQueue}
-                    onClick={() => {
-                      enqueue();
-                      this.toggleDisable();
-                    }}
-                  >
-                    Join the Queue
-                  </Button>
-                  <Button
-                    className="queue-up"
-                    bsStyle="danger"
-                    onClick={() => {
-                      if (this.state.toggleQueue) {
-                        dequeue();
-                        this.toggleDisable();
-                      }
-                    }}
-                  >
-                    Leave the Queue
-                  </Button>
-                </div>
+                  </div>
+                  <Reaction />
+                  {
+                    status.broadcasters.includes(user.id)
+                    ?
+                    <ReactionButtons />
+                    :
+                    <QueueBar
+                    queueList={status.queue}
+                    isLoggedIn={isLoggedIn}
+                    toggleQueue={this.state.toggleQueue}
+                    enqueue={enqueue}
+                    dequeue={dequeue}
+                    toggleDisable={this.toggleDisable}
+                    />
+                  }
+                
                 <Button className="open-button" bsSize={"large"} onClick={() => this.display('togglePrompt')}>Prompts</Button>
                 {
                   isLoggedIn && this.isChannelOwner(channelName) && <Button className="create-prompt-button" onClick={() => this.display('toggleCreatePrompt')}>Create a Prompt</Button>
                 }
-                <Reaction />
-                <ReactionButtons />
               </div>
             </div>
             <Chat channel={channelName} />
