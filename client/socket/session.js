@@ -1,6 +1,6 @@
 import { socket } from './socket';
 import rtcConnection from '../rtcConnection';
-import store, { setTime, setTimerActive, setPhase, setDebate, setWinner, setVoting, setViewerCount, setMain } from '../store/';
+import store, { setTime, setTimerActive, setPhase, setDebate, setWinner, setVoting, setViewerCount, setMain, setBroadcasters } from '../store/';
 import axios from 'axios';
 
 
@@ -57,19 +57,21 @@ socket.on('setRoomState', roomState => {
 
   if (roomState.broadcasterIds) rtcConnection.joinBroadcasters(roomState.broadcasterIds);
 
-  let { phaseStatus, viewerCount, queue } = roomState;
+  let { phaseStatus, viewerCount, queue, debateStatus, winner, muteUser } = roomState;
   //Set the users ability to vote
   store.dispatch(setVoting(roomState.canVote));
 
   store.dispatch(setMain(phaseStatus, viewerCount, queue));
 
-  if (roomState.winner) store.dispatch(setWinner(roomState.winner));
+  store.dispatch(setWinner(winner));
 
-  if (roomState.debateStatus) store.dispatch(setDebate(roomState.debateStatus));
+  store.dispatch(setDebate(debateStatus));
 
-  roomState.muteUser && rtcConnection.muteUser(muteUser);
+  muteUser && rtcConnection.muteUser(muteUser);
 
-  roomState.unmuteUser && rtcConnection.unmuteUser(unmuteUser);
+  unmuteUser && unmuteUser(unmuteUser);
+
+  if (roomState.broadcasters) store.dispatch(setBroadcasters(roomState.broadcasters));
 
 });
 

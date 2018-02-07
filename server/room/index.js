@@ -128,7 +128,7 @@ module.exports = (io) => {
         unmutedUser = this.broadcasters[0].id;
         if(!this.state.firstDebator){
           unmutedUser = this.broadcasters[1].id;
-          mutedUser = this.broadcaster[0].id;
+          mutedUser = this.broadcasters[0].id;
         }
       }
       if (this.state.active) {
@@ -147,6 +147,7 @@ module.exports = (io) => {
         queue: this.queue.map(queuer => { return { 'userId': queuer.userId, 'userName': queuer.userName } }),
         mutedUser,
         unmutedUser,
+        broadcasters: this.broadcasters.map(socket => socket.userId),
       }, this.state, {
           sentTime: Date.now()
         });
