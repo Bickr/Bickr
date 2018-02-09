@@ -91,7 +91,7 @@ module.exports = (io) => {
       console.log('waiting between activities');
       this.action.timeout = setTimeout(() => { if (this.action.status === LEAD_IN) f() }, this.leadinTime);
       this.leadinCallback = f;
-      let mutedUser = this.state.firstDebator ? this.broadcasters[0].id : this.broadcasters[1].id;
+      let mutedUser = this.firstDebator ? this.broadcasters[0].id : this.broadcasters[1].id;
       this.state = {
         active: true,
         broadcasterIds: this.getBroadcasterIds(),
@@ -129,13 +129,13 @@ module.exports = (io) => {
       if(this.action.status === USERS_DEBATING){
         mutedUser = this.broadcasters[1].id;
         unmutedUser = this.broadcasters[0].id;
-        if(!this.state.firstDebator){
+        if(!this.firstDebator){
           unmutedUser = this.broadcasters[1].id;
           mutedUser = this.broadcasters[0].id;
         }
       }
       if (this.state.active) {
-        if (this.state.firstDebator) debateStatus = this.broadcasters[0].userName;
+        if (this.firstDebator) debateStatus = this.broadcasters[0].userName;
         else debateStatus = this.broadcasters[1].userName;
       }
       let winner;
