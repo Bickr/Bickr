@@ -126,10 +126,10 @@ module.exports = (io) => {
       else if (this.action.status === RESETTING_GAME) phaseStatus = '_announcingWinner';
       let debateStatus = false;
       let mutedUser, unmutedUser;
-      if(this.action.status === USERS_DEBATING){
+      if (this.action.status === USERS_DEBATING){
         mutedUser = this.broadcasters[1].id;
         unmutedUser = this.broadcasters[0].id;
-        if(!this.firstDebator){
+        if (this.firstDebator){
           unmutedUser = this.broadcasters[1].id;
           mutedUser = this.broadcasters[0].id;
         }
