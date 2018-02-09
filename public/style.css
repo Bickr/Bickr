@@ -145,7 +145,7 @@ div.home-category-list-item {
 }
 
 .home-category-list-item-image {
-  width: 15vw;
+  width: 230px;
 }
 
 
@@ -462,11 +462,11 @@ div.category-channel-list-item {
   text-align: center;
   margin: 1.5em;
   width: 400px;
-  height: 200px;
+  height: 220px;
 }
 
 .category-channel-list-item-image {
-  height: 280px;
+  height: 220px;
 }
 
 /************************ USER PAGE ***********************/
