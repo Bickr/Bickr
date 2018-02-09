@@ -16,9 +16,11 @@ const seedChannels = async function () {
     Channel.create({ name: 'Oscar Predictions', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 4, categoryId: 4, size: 250 }),
     Channel.create({ name: 'Marvel movies = Suck', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 4, categoryId: 4, size: 75 }),
 
-    Channel.create({ name: 'Roger Gooddell 4 President', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 4, categoryId: 5, size: 200 }),
-    Channel.create({ name: 'Cricket is the only sport that\'s good', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 7, categoryId: 5, size: 250 }),
-    Channel.create({ name: 'NBA MVP Candidates', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 3, categoryId: 5, size: 75 }),
+    Channel.create({
+      name: 'SuperBowl predictions', type: 'Debate', description: 'BLANK DESCRIPTION', imageURL: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/16/Super_Bowl_logo.svg/1200px-Super_Bowl_logo.svg.png',  userId: 4, categoryId: 5, size: 200 }),
+    Channel.create({
+      name: 'LeBron the GOAT?', type: 'Debate', description: 'BLANK DESCRIPTION', imageURL: 'http://3.bp.blogspot.com/-gto-4aJ1xUg/VCRGbVidV1I/AAAAAAAAAdA/K9yWOQo2NAU/s1600/Screen%2BShot%2B2014-09-25%2Bat%2B12.44.04%2BPM.png', userId: 7, categoryId: 5, size: 250 }),
+    Channel.create({ name: 'Is baseball dying?', type: 'Debate', description: 'BLANK DESCRIPTION', imageURL: 'https://spartanink.org/wp-content/uploads/2017/11/44444.jpg', userId: 3, categoryId: 5, size: 75 }),
 
     Channel.create({ name: 'The Symbolif Motif', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 5, categoryId: 6, size: 200 }),
     Channel.create({ name: 'themes THemes THEMES', type: 'Debate', description: 'BLANK DESCRIPTION', userId: 7,  categoryId: 6, size: 250 }),
